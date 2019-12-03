@@ -25,7 +25,7 @@ if(isset($_POST['btn-login'])){
 	}
 
 	if($usernameErr=="" && $passErr==""){
-		$sql = "select * from user where username='$username' && password='$passwordEncrypt'";
+		$sql = "select * from users where username='$username' && password='$passwordEncrypt'";
 		$result = $con->query($sql);
 
 		if($result->num_rows > 0){

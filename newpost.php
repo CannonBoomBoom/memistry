@@ -3,7 +3,7 @@ include "includes/header.php";
 include "includes/nav_bar.php";
 ?>
 
-<section>
+<div class=container>
 		<form>
       <fieldset>
         <legend>Create a new post</legend>
@@ -28,7 +28,7 @@ include "includes/nav_bar.php";
     		</div>
       </fieldset>
     </form>
-	</section>
+</div>
 
 <?php
 	include "includes/footer.php";

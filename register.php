@@ -3,7 +3,7 @@
 include "includes/db.php";
 
 $username = $email = $first_name = $last_name = $password = $registerDone = "";
-$usernameErr = $emailErr = $fnameErr = $lnameErr = $passErr = $imgErr = "";
+$usernameErr = $emailErr = $first_nameErr = $last_nameErr = $passErr = $imgErr = "";
 
 if(isset($_POST['btn-register'])){ 
 
@@ -36,11 +36,11 @@ if(isset($_POST['btn-register'])){
 
 	$first_name = ucfirst(strtolower(trim($_POST['firstname']))); 
 	if($first_name == "")
-		$fnameErr = "enter your firstname";
+		$first_nameErr = "enter your firstname";
 
 	$last_name = ucfirst(strtolower(trim($_POST['lastname']))); 
 	if($last_name == "")
-		$lnameErr = "enter your lastname";
+		$last_nameErr = "enter your lastname";
 
 
 	$password = trim($_POST['password']);
@@ -57,8 +57,8 @@ if(isset($_POST['btn-register'])){
 
 
 
-	if($usernameErr=="" && $emailErr=="" && $fnameErr=="" && $lnameErr=="" && $passErr=="" && $imgErr==""){
-		$sql = "insert into users(username, email, fname, lname, password, picture) values ('$username', '$email', '$first_name', '$last_name', '$passwordEncrypt', '$imgContent')";
+	if($usernameErr=="" && $emailErr=="" && $first_nameErr=="" && $last_nameErr=="" && $passErr=="" && $imgErr==""){
+		$sql = "insert into users(username, email, first_name, last_name, password, picture) values ('$username', '$email', '$first_name', '$last_name', '$passwordEncrypt', '$imgContent')";
 	
 		if($con->query($sql) === TRUE){
 			$registerDone = "new users added successfully";
@@ -90,10 +90,10 @@ include "includes/nav_bar.php";
 					<label> Email Address </label><span class="error"> <?php echo $emailErr ?> </span>
 					<input type="text" placeholder="Enter Email Address" name="email" class="form-control" value="<?php echo $email ?>" />
 
-					<label> First Name </label> <span class="error"> <?php echo $fnameErr ?> </span>
+					<label> First Name </label> <span class="error"> <?php echo $first_nameErr ?> </span>
 					<input type="text" placeholder="Enter First Name" name="firstname" class="form-control" value="<?php echo $first_name ?>" />
 
-					<label> Last Name </label> <span class="error"> <?php echo $lnameErr ?> </span>
+					<label> Last Name </label> <span class="error"> <?php echo $last_nameErr ?> </span>
 					<input type="text" placeholder="Enter Last Name" name="lastname" class="form-control" value="<?php echo $last_name ?>" />
 
 					<label> Password </label> <span class="error"> <?php echo $passErr ?> </span>
