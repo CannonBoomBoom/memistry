@@ -1,9 +1,24 @@
 <?php
-include "includes/header.php";
+session_start();
+if(isset($_SESSION['username'])){
+
 include "includes/nav_bar.php";
 include "includes/db.php";
+include "includes/class.user.php";
 
-$query  = "select memes.post, memes.Title, memes.username, users.username, users.picture from memes inner join users where memes.username=users.username order by meme_id desc";
+$userob = new users();
+
+$username = $_SESSION['username'];
+
+$row = $userob->getUserDetails($username, $con);
+
+include "includes/header.php";
+
+$meme_id = 
+
+$query  = "select memes.post, memes.Title, memes.username, users.username, users.picture 
+from memes inner join users ON memes.username = users.username order by meme_id desc";
+
 $res    = mysqli_query($con,$query);
 $count  =   mysqli_num_rows($res);
 $slides='';
@@ -22,8 +37,14 @@ $counter=0;
         {
             $slides .= 
             '<div class="item active">
-            <img src="data:image;base64,'.base64_encode( $image).'" alt="'.$title.'" />
-            <div class="carousel-caption">
+            <div>
+                  <img style="width:50px;" src="data:image;base64,'.base64_encode( $user_pic).'" alt="'.$username.'" />
+                </div>
+                <div>
+                  <h4>'.$username.'</h4>
+                </div>
+            <img style="width:100%;" src="data:image;base64,'.base64_encode( $image).'" alt="'.$title.'" />
+            <div>
               <h3>'.$title.'</h3> 
             </div>
           </div>';
@@ -33,8 +54,14 @@ $counter=0;
         {
             $slides .= 
             '<div class="item">
-            <img src="data:image;base64,'.base64_encode( $image).'" alt="'.$title.'" />
-            <div class="carousel-caption">
+            <div>
+                  <img style="width:50px;" src="data:image;base64,'.base64_encode( $user_pic).'" alt="'.$username.'" />
+                </div>
+                <div>
+                  <h3>'.$username.'</h3>
+                </div>
+            <img style="width:100%;" src="data:image;base64,'.base64_encode( $image).'" alt="'.$title.'" />
+            <div>
               <h3>'.$title.'</h3>       
             </div>
           </div>';
@@ -46,17 +73,8 @@ $counter=0;
 <div class="row">
 	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
 	  <div class="thumbnail box">
-		  <div class="row">
-		  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-				<img class="img-responsive img-rounded" src="images/profilepicdemo.jpeg" alt="profile-pic">
-			  </div>
-			  <div>
-				<h4>profile name here</h4>
-			  </div>
-			
-		  </div>
           
-          <div id="carousel-example-generic" class="carousel slide">
+          <div id="carousel-example-generic" class="carousel slide" data-interval="false">
 
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
@@ -65,7 +83,6 @@ $counter=0;
 
 
 		  <!--<img class="img-responsive" src="images/postimagedemo.jpg" alt="post-image">-->
-          <p><?php echo $title; ?></p>
 		  <div class="row">
 			  
 		  <div class="col-xs-5 col-sm-4 col-md-4 col-lg-4 col-xs-offset-7 col-sm-offset-8 col-md-offset-8 col-lg-offset-8">
@@ -86,8 +103,8 @@ $counter=0;
 			  </a>
 			</div>
 			<div class="media-body">
-			  <h4 class="media-heading">Profile Name</h4>
-			  ...
+			  <h4 class="media-heading"></h4>
+			  
 			</div>
 		  </div>
 	  </div>
@@ -97,4 +114,10 @@ $counter=0;
  
 <?php
 	include "includes/footer.php";
+?>
+<?php
+	}
+	else{
+  		header("Location:login.php");
+	}
 ?>
