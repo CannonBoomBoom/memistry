@@ -1,0 +1,65 @@
+header {
+	text-align: center;
+	padding:2em 0;
+	background-color: #ff71CE;
+	color: #01CDFE;
+}
+
+.navvisuals {
+	background:pink;
+}
+
+section{
+    margin: 0;
+    padding: 1px;
+}
+
+h1 {
+	font-size: 3em;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+.buttons{
+	text-align: center;
+	margin: 1em 0;
+}
+
+.buttons a{
+	min-width: 15em;
+	padding: 1em 1em;
+}
+
+.main_bk{
+	background-color: white;
+}
+
+.ProfileTitle{
+	text-align: center;
+	margin: 1em auto;
+}
+
+.ProfileTitle h2{
+	margin:1em 1em;
+}
+
+.box{
+	background:pink;
+}
+
+.main_img img {
+	max-width:50%;
+	margin: 0 auto;
+}
+
+.footer {
+	background-color: FF00FF;
+	text-align: center;
+	background: pink;
+}
+
+@media screen and (max-width: 760px){
+	.buttons a{
+		margin-bottom: 2em;
+	}
+}
